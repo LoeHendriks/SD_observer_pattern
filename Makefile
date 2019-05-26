@@ -1,4 +1,4 @@
-CFLAGS=-Wall -Werror -pedantic  -ggdb -O0 -Iproduct 
+CFLAGS=-Wall -Werror -pedantic -std=gnu++11 -ggdb -O0 -Iproduct  
 LDFLAGS=-pthread 
 
 TEST_LIBS=-lgtest -lgmock -lgmock_main -lpthread
@@ -8,7 +8,7 @@ HEADERS=$(wildcard Product/*.h)
 
 SOURCES_INC=-I./Product
 
-CC=g++
+CC=/usr/local/xtools/arm-unknown-linux-uclibcgnueabi/bin/arm-linux-g++
 
 .phony: all clean
 
