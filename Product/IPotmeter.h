@@ -1,5 +1,5 @@
-#ifndef IBUTTON_H
-#define IBUTTON_H
+#ifndef IPOTMETER_H
+#define IPOTMETER_H
 
 #include <vector>
 #include <stdint.h>
@@ -7,18 +7,19 @@
 
 class StateManager;
 
-class IButton
+class IPotmeter
 {
 public:
-	IButton(StateManager* sm) 
+	IPotmeter(StateManager* sm) 
 	{
 		this->statemanager = sm;
 	}
 	virtual void Init() = 0;
-	virtual void GetPressedButtons() = 0;
+	virtual void GetData() = 0;
 	
 protected:
 	StateManager* statemanager;
 };
+
 
 #endif

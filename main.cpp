@@ -4,13 +4,21 @@
 #include <stdint.h>
 #include <unistd.h>
 #include "Product/StateManager.h"
+#include <pthread.h>
 
 
 bool running = true;
 
+StateManager sm = StateManager();
+
+void* callPolling(void*)
+{
+	sm.PollButtonState();
+}
+
 int main()
 {
-    StateManager sm = StateManager();
+    
     while(running)
     {
 
@@ -26,17 +34,17 @@ int main()
 
         std::cin >> var;
         
-
+		pthread_t polling;
+		
         switch(var)
         {
 
             case 1:
             {
-				//while(1)
-				//{
-					//usleep(200000);
-					sm.bc->GetPressedButtons();
-				//}
+				//pthread_create(&polling, NULL, callPolling, NULL);
+				sm.pot->GetData();
+				
+				
                 break;
             } 
             case 2:

@@ -2,6 +2,7 @@
 #define BUTTONCONTROL_H
 
 #include "IButton.h"
+#include "Events.h"
 #include <string>
 
 #define BUTTON_TIME_PIN 40
@@ -30,6 +31,7 @@
 
 #define BUTTON_MEMORY_PIN 47
 #define BUTTON_MEMORY_J 3
+// TODO:: add remaining buttons
 
 
 struct Button
@@ -39,14 +41,15 @@ struct Button
 	uint32_t pin;
 	uint32_t bit;
 	uint32_t reg;
+	Event ev;
 };
 
 class ButtonControl : public IButton
 {
 public:
-	ButtonControl();
+	ButtonControl(StateManager* sm):IButton(sm){}
 	void Init();
-	std::vector<uint32_t> GetPressedButtons();
+	void GetPressedButtons();
 private:
 	Button timeBt;
 	Button startBt;
